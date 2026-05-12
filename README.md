@@ -116,4 +116,10 @@ npm start
 
 ---
 
+### Current Limitations
+
+- Automatic food expiry handling
+- Automatic removal of expired donations
+- Accurate freshness detection
+- Advanced AI validation logic
 
