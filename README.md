@@ -4,6 +4,9 @@ A **full-stack, production-grade** real-time logistics platform connecting resta
 
 ---
 
+## Live Demo
+https://smart-surplus-food-dispatcher.vercel.app/
+
 ## Overview
 
 FoodBridge is designed to solve the "last-mile" problem of food donation. It uses a modern event-driven architecture to ensure that surplus food is rescued and delivered while it's still fresh.
