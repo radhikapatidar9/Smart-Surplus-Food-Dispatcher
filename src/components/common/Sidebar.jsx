@@ -62,7 +62,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile Topbar */}
-      <div className="lg:hidden fixed top-14 left-0 right-0 z-40 h-14 bg-dark-850 border-b border-white/5 flex items-center justify-between px-4">
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-40 h-14 bg-dark-850 border-b border-white/5 flex items-center justify-between px-4">
         <div className="flex items-center gap-2 min-w-0">
           <div className="w-8 h-8 rounded-full bg-brand-green flex items-center justify-center text-black text-xs font-bold flex-shrink-0">
             {user?.avatar}
