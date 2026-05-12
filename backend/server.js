@@ -61,7 +61,7 @@ if (process.env.NODE_ENV === 'production') {
 const io = new Server(server, {
   cors: {
     origin: [
-      'http://localhost:3000',
+      'https://smart-surplus-food-dispatcher-jo5nnp6z3.vercel.app',
       'https://smart-surplus-food-dispatcher.vercel.app'
     ],
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
@@ -74,7 +74,7 @@ require('./rtc/socket')(io);
 // Middleware
 app.use(cors({
   origin: [
-    'http://localhost:3000',
+    'https://smart-surplus-food-dispatcher-jo5nnp6z3.vercel.app',
     'https://smart-surplus-food-dispatcher.vercel.app'
   ],
   credentials: true,
