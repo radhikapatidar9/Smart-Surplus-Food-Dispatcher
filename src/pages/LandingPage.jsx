@@ -76,6 +76,7 @@ const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } };
 
 export default function LandingPage() {
   const [ticker, setTicker] = useState(0);
+
   useEffect(() => {
     const t = setInterval(() => setTicker(p => (p + 1) % 4), 2500);
     return () => clearInterval(t);
@@ -86,20 +87,28 @@ export default function LandingPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center grid-bg pt-14">
-        {/* Glow orbs */}
+      <section className="relative min-h-screen flex items-center grid-bg pt-20 sm:pt-24">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-green/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-brand-green/3 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-4 py-20 grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.12 } } }}>
-            {/* Live badge */}
-            <motion.div variants={fadeUp} className="inline-flex items-center gap-2 glass-green px-3 py-1.5 rounded-full text-xs text-brand-green font-medium mb-6">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+          >
+            <motion.div
+              variants={fadeUp}
+              className="inline-flex items-center gap-2 glass-green px-3 py-1.5 rounded-full text-xs text-brand-green font-medium mb-6"
+            >
               <span className="w-2 h-2 rounded-full bg-brand-green animate-pulse" />
               Live: {STATS[ticker].value} {STATS[ticker].label}
             </motion.div>
 
-            <motion.h1 variants={fadeUp} className="font-display text-4xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6">
+            <motion.h1
+              variants={fadeUp}
+              className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-5 sm:mb-6"
+            >
               Reduce
               <br />
               <span className="text-brand-green text-glow">Food Waste.</span>
@@ -107,21 +116,36 @@ export default function LandingPage() {
               Deliver Hope.
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="text-base text-gray-400 max-w-md mb-8 leading-relaxed">
+            <motion.p
+              variants={fadeUp}
+              className="text-sm sm:text-base text-gray-400 max-w-md mb-6 sm:mb-8 leading-relaxed"
+            >
               FoodBridge connects restaurants and event halls with NGOs and volunteers to rescue surplus food — in real time, every day.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
-              <Link to="/signup" className="btn-primary text-base px-6 py-3">
+            <motion.div
+              variants={fadeUp}
+              className="flex flex-col sm:flex-row flex-wrap gap-3 w-full sm:w-auto"
+            >
+              <Link
+                to="/signup"
+                className="btn-primary text-sm sm:text-base px-5 sm:px-6 py-3 w-full sm:w-auto justify-center"
+              >
                 Donate Food <ArrowRight size={18} />
               </Link>
-              <Link to="/signup" className="btn-secondary text-base px-6 py-3">
+
+              <Link
+                to="/signup"
+                className="btn-secondary text-sm sm:text-base px-5 sm:px-6 py-3 w-full sm:w-auto justify-center"
+              >
                 Join as Volunteer <ChevronRight size={18} />
               </Link>
             </motion.div>
 
-            {/* Stats row */}
-            <motion.div variants={fadeUp} className="mt-10 flex gap-6 flex-wrap">
+            <motion.div
+              variants={fadeUp}
+              className="mt-8 sm:mt-10 grid grid-cols-2 sm:flex gap-5 sm:gap-6"
+            >
               {STATS.map(s => (
                 <div key={s.label}>
                   <p className="font-display font-bold text-xl text-brand-green">{s.value}</p>
@@ -131,10 +155,14 @@ export default function LandingPage() {
             </motion.div>
           </motion.div>
 
-          {/* Hero visual */}
-          <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="hidden lg:block relative">
+          {/* Hero Visual */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="hidden lg:block relative"
+          >
             <div className="relative w-full aspect-square max-w-lg mx-auto">
-              {/* Central node */}
               <div className="absolute inset-1/4 glass-green rounded-full flex items-center justify-center glow-green animate-float">
                 <div className="text-center">
                   <span className="text-4xl">🌱</span>
@@ -142,22 +170,27 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Orbiting nodes */}
               {[
-                { emoji: '🍛', label: 'Donor', angle: 0, r: '38%' },
-                { emoji: '🚴', label: 'Volunteer', angle: 120, r: '38%' },
-                { emoji: '🏠', label: 'NGO', angle: 240, r: '38%' },
+                { emoji: '🍛', label: 'Donor', angle: 0 },
+                { emoji: '🚴', label: 'Volunteer', angle: 120 },
+                { emoji: '🏠', label: 'NGO', angle: 240 },
               ].map((n, i) => {
                 const rad = (n.angle * Math.PI) / 180;
                 const x = 50 + 38 * Math.sin(rad);
                 const y = 50 - 38 * Math.cos(rad);
+
                 return (
                   <motion.div
                     key={i}
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity, delay: i * 0.6 }}
                     className="absolute glass rounded-2xl p-3 text-center border border-white/10"
-                    style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%,-50%)', width: 80 }}
+                    style={{
+                      left: `${x}%`,
+                      top: `${y}%`,
+                      transform: 'translate(-50%,-50%)',
+                      width: 80,
+                    }}
                   >
                     <span className="text-2xl">{n.emoji}</span>
                     <p className="text-[10px] text-gray-400 mt-1">{n.label}</p>
@@ -165,51 +198,71 @@ export default function LandingPage() {
                 );
               })}
 
-              {/* Connection lines */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <svg
+                className="absolute inset-0 w-full h-full"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+              >
                 {[0, 120, 240].map((angle, i) => {
                   const rad = (angle * Math.PI) / 180;
                   const x = 50 + 38 * Math.sin(rad);
                   const y = 50 - 38 * Math.cos(rad);
-                  return <line key={i} x1="50" y1="50" x2={x} y2={y} stroke="rgba(34,197,94,0.2)" strokeWidth="0.5" strokeDasharray="2,2" />;
+
+                  return (
+                    <line
+                      key={i}
+                      x1="50"
+                      y1="50"
+                      x2={x}
+                      y2={y}
+                      stroke="rgba(34,197,94,0.2)"
+                      strokeWidth="0.5"
+                      strokeDasharray="2,2"
+                    />
+                  );
                 })}
               </svg>
             </div>
-
-            {/* Floating notification card */}
-            <motion.div
-              animate={{ y: [-5, 5, -5] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="absolute -bottom-4 -left-4 glass border border-white/10 rounded-xl p-3 w-52"
-            >
-              <div className="flex items-start gap-2">
-                <span className="w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-xs flex-shrink-0">!</span>
-                <div>
-                  <p className="text-xs font-semibold text-red-400">Critical Alert</p>
-                  <p className="text-[11px] text-gray-400 mt-0.5">25kg Biryani · Pickup in 2h</p>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Features */}
-      <section id="features" className="py-24 max-w-7xl mx-auto px-4">
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
+      <section
+        id="features"
+        className="py-16 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+        >
           <motion.div variants={fadeUp} className="text-center mb-16">
-            <span className="text-xs font-medium text-brand-green uppercase tracking-widest">Platform Features</span>
-            <h2 className="font-display text-3xl font-bold mt-3 tracking-tight">Built for Speed & Impact</h2>
-            <p className="text-gray-400 mt-3 max-w-xl mx-auto">Every feature is designed to get food from donor to recipient as fast as humanly (and technically) possible.</p>
+            <span className="text-xs font-medium text-brand-green uppercase tracking-widest">
+              Platform Features
+            </span>
+
+            <h2 className="font-display text-3xl font-bold mt-3 tracking-tight">
+              Built for Speed & Impact
+            </h2>
+
+            <p className="text-gray-400 mt-3 max-w-xl mx-auto">
+              Every feature is designed to get food from donor to recipient as fast as humanly (and technically) possible.
+            </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {FEATURES.map((f, i) => (
               <motion.div key={i} variants={fadeUp} className="card group cursor-default">
-                <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${colorMap[f.color]}`}>
+                <div
+                  className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${colorMap[f.color]}`}
+                >
                   <f.icon size={18} />
                 </div>
+
                 <h3 className="font-display font-bold text-white mb-2">{f.title}</h3>
+
                 <p className="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
               </motion.div>
             ))}
@@ -218,15 +271,26 @@ export default function LandingPage() {
       </section>
 
       {/* How it works */}
-      <section id="how-it-works" className="py-24 bg-dark-800 border-y border-white/5">
-        <div className="max-w-6xl mx-auto px-4">
+      <section
+        id="how-it-works"
+        className="py-16 sm:py-20 lg:py-24 bg-dark-800 border-y border-white/5"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="text-xs font-medium text-brand-green uppercase tracking-widest">Process</span>
-            <h2 className="font-display text-3xl font-bold mt-3 tracking-tight">How FoodBridge Works</h2>
-            <p className="text-gray-400 mt-3">From post to plate in under 2 hours for critical food</p>
+            <span className="text-xs font-medium text-brand-green uppercase tracking-widest">
+              Process
+            </span>
+
+            <h2 className="font-display text-3xl font-bold mt-3 tracking-tight">
+              How FoodBridge Works
+            </h2>
+
+            <p className="text-gray-400 mt-3">
+              From post to plate in under 2 hours for critical food
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {STEPS.map((s, i) => (
               <motion.div
                 key={i}
@@ -236,14 +300,19 @@ export default function LandingPage() {
                 transition={{ delay: i * 0.15 }}
                 className="relative"
               >
-                {i < STEPS.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-brand-green/30 to-transparent z-0" />
-                )}
                 <div className="relative z-10 text-center">
                   <div className="text-4xl mb-3">{s.icon}</div>
-                  <div className="font-mono text-xs text-brand-green mb-2 font-bold">{s.step}</div>
-                  <span className="inline-block text-xs px-2 py-0.5 rounded-full bg-white/5 text-gray-500 mb-2">{s.role}</span>
+
+                  <div className="font-mono text-xs text-brand-green mb-2 font-bold">
+                    {s.step}
+                  </div>
+
+                  <span className="inline-block text-xs px-2 py-0.5 rounded-full bg-white/5 text-gray-500 mb-2">
+                    {s.role}
+                  </span>
+
                   <h3 className="font-display font-bold mb-2">{s.title}</h3>
+
                   <p className="text-sm text-gray-500 leading-relaxed">{s.desc}</p>
                 </div>
               </motion.div>
@@ -253,11 +322,14 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 max-w-6xl mx-auto px-4">
+      <section className="py-16 sm:py-20 lg:py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="font-display text-3xl font-bold tracking-tight">Loved by Communities</h2>
+          <h2 className="font-display text-3xl font-bold tracking-tight">
+            Loved by Communities
+          </h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {TESTIMONIALS.map((t, i) => (
             <motion.div
               key={i}
@@ -268,13 +340,26 @@ export default function LandingPage() {
               className="card"
             >
               <div className="flex gap-1 mb-3">
-                {Array(t.stars).fill(0).map((_, j) => <Star key={j} size={14} className="text-yellow-400 fill-yellow-400" />)}
+                {Array(t.stars)
+                  .fill(0)
+                  .map((_, j) => (
+                    <Star
+                      key={j}
+                      size={14}
+                      className="text-yellow-400 fill-yellow-400"
+                    />
+                  ))}
               </div>
-              <p className="text-sm text-gray-400 leading-relaxed mb-4">"{t.text}"</p>
+
+              <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                "{t.text}"
+              </p>
+
               <div className="flex items-center gap-2.5 pt-3 border-t border-white/5">
                 <div className="w-8 h-8 rounded-full bg-brand-green/20 flex items-center justify-center text-brand-green text-xs font-bold">
                   {t.name[0]}
                 </div>
+
                 <div>
                   <p className="text-sm font-semibold">{t.name}</p>
                   <p className="text-xs text-gray-500">{t.role}</p>
@@ -285,24 +370,37 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* CTA Banner */}
-      <section className="py-24 px-4">
+      {/* CTA */}
+      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.97 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto glass-green rounded-3xl p-12 text-center relative overflow-hidden"
+          className="max-w-4xl mx-auto glass-green rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 text-center relative overflow-hidden"
         >
           <div className="absolute inset-0 grid-bg opacity-30" />
+
           <div className="relative z-10">
             <span className="text-4xl mb-4 block">🌍</span>
-            <h2 className="font-display text-3xl font-bold mb-4 tracking-tight">
-              Every meal saved is<br /><span className="text-brand-green">a family fed.</span>
+
+            <h2 className="font-display text-2xl sm:text-3xl font-bold mb-4 tracking-tight leading-tight">
+              Every meal saved is
+              <br />
+              <span className="text-brand-green">a family fed.</span>
             </h2>
-            <p className="text-gray-400 mb-8 max-w-lg mx-auto">Join 500+ restaurants, 38 NGOs, and 124 volunteers who are already making a difference daily.</p>
-            <div className="flex gap-3 justify-center flex-wrap">
-              <Link to="/signup" className="btn-primary px-8 py-3 text-base">Start Donating</Link>
-              <Link to="/signup" className="btn-secondary px-8 py-3 text-base">Volunteer Today</Link>
+
+            <p className="text-gray-400 mb-8 max-w-lg mx-auto">
+              Join 500+ restaurants, 38 NGOs, and 124 volunteers who are already making a difference daily.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center flex-wrap">
+              <Link to="/signup" className="btn-primary px-8 py-3 text-base">
+                Start Donating
+              </Link>
+
+              <Link to="/signup" className="btn-secondary px-8 py-3 text-base">
+                Volunteer Today
+              </Link>
             </div>
           </div>
         </motion.div>
@@ -310,27 +408,51 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="border-t border-white/5 py-12 px-4">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="font-display font-bold text-xl mb-3">
               Food<span className="text-brand-green">Bridge</span>
             </div>
-            <p className="text-sm text-gray-500 leading-relaxed">Smart logistics platform connecting surplus food with communities in need.</p>
+
+            <p className="text-sm text-gray-500 leading-relaxed">
+              Smart logistics platform connecting surplus food with communities in need.
+            </p>
           </div>
+
           {[
-            { title: 'Platform', links: ['For Restaurants', 'For NGOs', 'For Volunteers', 'Admin Panel'] },
-            { title: 'Company', links: ['About Us', 'Blog', 'Press', 'Careers'] },
-            { title: 'Contact', links: ['hello@foodbridge.in', '+91 98765 43210', 'Bangalore, India', 'Impact Report'] },
+            {
+              title: 'Platform',
+              links: ['For Restaurants', 'For NGOs', 'For Volunteers', 'Admin Panel'],
+            },
+            {
+              title: 'Company',
+              links: ['About Us', 'Blog', 'Press', 'Careers'],
+            },
+            {
+              title: 'Contact',
+              links: ['hello@foodbridge.in', '+91 98765 43210', 'Bangalore, India', 'Impact Report'],
+            },
           ].map(col => (
             <div key={col.title}>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">{col.title}</h4>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">
+                {col.title}
+              </h4>
+
               <ul className="space-y-2">
-                {col.links.map(l => <li key={l} className="text-sm text-gray-400 hover:text-brand-green cursor-pointer transition-colors">{l}</li>)}
+                {col.links.map(l => (
+                  <li
+                    key={l}
+                    className="text-sm text-gray-400 hover:text-brand-green cursor-pointer transition-colors"
+                  >
+                    {l}
+                  </li>
+                ))}
               </ul>
             </div>
           ))}
         </div>
-        <div className="max-w-7xl mx-auto border-t border-white/5 mt-8 pt-6 flex justify-between items-center text-xs text-gray-600">
+
+        <div className="max-w-7xl mx-auto border-t border-white/5 mt-8 pt-6 flex flex-col sm:flex-row gap-3 justify-between items-center text-xs text-gray-600 text-center sm:text-left">
           <p>© 2025 FoodBridge. All rights reserved.</p>
           <p>Made with 💚 to fight hunger</p>
         </div>
