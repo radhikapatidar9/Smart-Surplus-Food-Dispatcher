@@ -1,6 +1,8 @@
 # 🌱 FoodBridge — Smart Surplus Food Dispatcher
 
-A **full-stack, production-grade** real-time logistics platform connecting restaurants and event halls with NGOs, shelters, and volunteers to reduce food waste.
+A full-stack web application built to reduce food waste by connecting restaurants, event organizers, NGOs, and volunteers.
+
+The platform allows food donors to post surplus food, NGOs to claim donations, and volunteers to help with pickup and delivery tracking.
 
 ---
 
@@ -11,39 +13,62 @@ https://smart-surplus-food-dispatcher.vercel.app/
 
 FoodBridge is designed to solve the "last-mile" problem of food donation. It uses a modern event-driven architecture to ensure that surplus food is rescued and delivered while it's still fresh.
 
-### Key Architecture
-- **Event-Driven**: Real-time state synchronization via Socket.IO.
-- **Logistics Engine**: Intelligent mission tracking with a high-fidelity visual pipeline.
-- **Background Jobs**: Resilience via BullMQ and Redis for mission expiration and escalation.
-- **Geospatial Intelligence**: Location-based matching for volunteers and NGOs.
+### Current Status
+This project is currently in active development.
+
+The core workflow is working:
+
+- User authentication
+- Donation posting
+- NGO claiming system
+- Volunteer flow
+- Real-time updates using Socket.IO
+- Food category checking
+- Live donation tracking UI
+
+Some advanced features are partially implemented or still under improvement.
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| **Frontend** | React 18, Tailwind CSS, Framer Motion |
-| **State Management** | Zustand (Persistent), React Query |
-| **Backend** | Node.js, Express, MongoDB (Geospatial) |
-| **Real-time** | Socket.IO |
-| **Background Tasks** | Redis, BullMQ |
-| **Security** | JWT (HttpOnly Cookies), Helmet, rate-limiting |
+**Frontend**
+- React.js
+- Tailwind CSS
+- Framer Motion
+- React Query
+- React Router
+
+**Backend**
+- Node.js
+- Express.js
+- MongoDB
+- Socket.IO
+- JWT Authentication
 
 ---
 
 ## Project Structure
 
 ```
-├── backend/                # Express server + Business logic
-│   ├── models/            # Mongoose schemas (Donation, User, Session)
-│   ├── services/          # Modular business logic (Logistics, Auth, Notification)
-│   ├── rtc/               # Socket.IO event handlers
-│   └── workers/           # BullMQ background job processors
-├── src/                   # React Frontend
-│   ├── store/             # Zustand stores (auth, donation, notifications)
-│   ├── components/        # High-fidelity UI components
-│   └── pages/             # Role-based dashboards & Live Tracking
+├── backend/   
+|    ├── config/
+|   ├── controllers/          
+│   ├── models/ 
+|   ├── routes/           
+│   ├── services/ 
+|    ├── middlewares/         
+│   ├── rtc/               
+│   └── workers/ 
+├── public/          
+├── src/                   
+│   ├── store/             
+│   ├── components/  
+|    ├── context/
+|    ├── services/
+|    ├── hooks/
+|    ├── utils      
+│   └── pages/             
 └── README.md
 ```
 
@@ -67,13 +92,6 @@ FoodBridge is designed to solve the "last-mile" problem of food donation. It use
 - **Secure Auth**: Role-based access control (RBAC) with secure token management.
 
 ---
-
-## Quick Start
-
-### Prerequisites
-- Node.js 16+
-- MongoDB
-- Redis (Optional for dev, required for background jobs)
 
 ### Installation
 
