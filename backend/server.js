@@ -60,8 +60,12 @@ if (process.env.NODE_ENV === 'production') {
 // Socket.IO
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'https://smart-surplus-food-dispatcher.vercel.app',
+    origin: [
+      'http://localhost:3000',
+      'https://smart-surplus-food-dispatcher.vercel.app'
+    ],
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    credentials: true,
   },
 });
 app.set('io', io);
@@ -69,7 +73,10 @@ require('./rtc/socket')(io);
 
 // Middleware
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'https://smart-surplus-food-dispatcher.vercel.app',
+  origin: [
+    'http://localhost:3000',
+    'https://smart-surplus-food-dispatcher.vercel.app'
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
