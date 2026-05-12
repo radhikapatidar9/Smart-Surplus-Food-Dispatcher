@@ -4,7 +4,7 @@ A **full-stack, production-grade** real-time logistics platform connecting resta
 
 ---
 
-## 🚀 Overview
+## Overview
 
 FoodBridge is designed to solve the "last-mile" problem of food donation. It uses a modern event-driven architecture to ensure that surplus food is rescued and delivered while it's still fresh.
 
@@ -16,7 +16,7 @@ FoodBridge is designed to solve the "last-mile" problem of food donation. It use
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
@@ -29,7 +29,7 @@ FoodBridge is designed to solve the "last-mile" problem of food donation. It use
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── backend/                # Express server + Business logic
@@ -46,26 +46,26 @@ FoodBridge is designed to solve the "last-mile" problem of food donation. It use
 
 ---
 
-## 🔑 Features
+## Features
 
-### 🏢 Partner Dashboards
+### Partner Dashboards
 - **Restaurants**: Post donations with quantity, category (Critical/Standard), and live tracking.
 - **NGOs**: Browse the marketplace, claim donations, and monitor rescue missions.
 - **Volunteers**: Accept flash requests, manage pick-ups, and update delivery stages.
 
-### 🛣️ High-Fidelity Tracking
+### High-Fidelity Tracking
 - **Mission Pulse**: A vertical, real-time logistics timeline with interactive checkboxes.
 - **Auto-Sync**: Status updates propagate across all stakeholders instantly.
 - **Time-Aware**: Precise timestamps for every stage (Accepted, Picked Up, Transit, etc.).
 
-### 🛡️ Production Safety
+### Production Safety
 - **Rate Limiting**: Protection against brute-force and DDoS.
 - **Graceful Degradation**: System remains functional even if background services (like Redis) are temporarily unavailable.
 - **Secure Auth**: Role-based access control (RBAC) with secure token management.
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js 16+
@@ -76,7 +76,7 @@ FoodBridge is designed to solve the "last-mile" problem of food donation. It use
 
 ```bash
 # 1. Clone & Install
-git clone https://github.com/yourusername/foodbridge.git
+git clone https://github.com/radhikapatidar9/Smart-Surplus-Food-Dispatcher
 npm install
 cd backend && npm install
 
@@ -95,23 +95,4 @@ npm start
 
 ---
 
-## 🌟 Resume Highlights
-- **Real-time Synchronization**: Implemented Socket.IO for instant mission status updates across multiple user roles.
-- **Scalable Background Jobs**: Integrated BullMQ and Redis to handle donation expirations and volunteer dispatching.
-- **Modern State Management**: Migrated from Context API to **Zustand** for better performance and persistent authentication.
-- **Advanced UX**: Designed a high-fidelity logistics pipeline using **Framer Motion** for smooth, meaningful status transitions.
-- **Geospatial Logic**: Utilized MongoDB `$nearSphere` queries to optimize food rescue logistics based on volunteer proximity.
 
----
-
-## 🔒 Security Notice
-Ensure you never commit your `.env` file to public repositories. Use the provided `.env.example` to set up your environment variables (MongoDB URI, JWT Secret, etc.).
-ssification UI with image upload
-- ✅ Real-time notification system
-- ✅ Collapsible sidebar navigation
-- ✅ Glassmorphism dark theme
-- ✅ Framer Motion animations throughout
-- ✅ Fully responsive (mobile-first)
-- ✅ Toast notification system
-- ✅ Form validation
-- ✅ Loading states & error handling
