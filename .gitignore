@@ -1,0 +1,26 @@
+# Frontend dependencies
+node_modules/
+
+# Frontend environment variables
+.env
+
+# Build files
+dist/
+build/
+
+# Logs
+*.log
+
+# Cache
+.cache/
+.vite/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Deployment
+.vercel/
